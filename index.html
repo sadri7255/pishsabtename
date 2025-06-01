@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فرم پیش ثبت نام سال تحصیلی ۱۴۰۴-۱۴۰۳ هنرستان حضرت امام رضا (ع)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2a9d8f; /* سبزآبی اصلی */
+            --secondary-color: #264653; /* آبی دودی برای متون و عناوین */
+            --accent-color: #e76f51; /* نارنجی برای دکمه ها و تاکیدها */
+            --light-bg: #f8f9fa; /* پس زمینه خیلی روشن */
+            --dark-text: #343a40; /* رنگ متن تیره */
+            --border-color: #dee2e6; /* رنگ حاشیه ها */
+            --input-bg: #ffffff; /* پس زمینه فیلدهای ورودی */
+            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            direction: rtl;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .header-bar {
+            background-color: var(--secondary-color);
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        .logo-placeholder {
+            width: 100px; /* اندازه لوگو */
+            height: 100px;
+            background-color: #e9ecef;
+            border-radius: 50%; /* لوگوی دایره ای شکل */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--secondary-color);
+            /* برای استفاده از تصویر واقعی:
+            content: url('آدرس_لوگوی_شما.png');
+            background-size: cover;
+            background-position: center; */
+        }
+        .logo-placeholder img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            padding: 30px 35px;
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+        }
+
+        header h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 2em; /* بزرگتر کردن عنوان اصلی */
+            font-weight: 700;
+        }
+
+        header p.school-name {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+
+        .form-section {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .form-section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .form-section h2 {
+            color: var(--secondary-color);
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+        .form-section h3 {
+            color: var(--secondary-color);
+            font-size: 1.2em;
+            font-weight: 500;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px 25px; /* فاصله عمودی و افقی */
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #495057; /* کمی روشن تر از متن اصلی */
+            font-size: 0.95em;
+        }
+        .form-group label .required-star {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-right: 3px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group input[type="date"], /* Consider using a Persian date picker JS library for better UX */
+        .form-group input[type="number"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 1em;
+            background-color: var(--input-bg);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-group small {
+            font-size: 0.8em;
+            color: #6c757d; /* خاکستری برای راهنمایی */
+            margin-top: 6px;
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(to right, var(--accent-color), #f4a261);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1.15em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: block;
+            width: fit-content;
+            margin: 40px auto 10px auto;
+            box-shadow: 0 4px 10px rgba(231, 111, 81, 0.3);
+        }
+        button[type="submit"]:hover {
+            background: linear-gradient(to right, #f4a261, var(--accent-color));
+            box-shadow: 0 6px 15px rgba(231, 111, 81, 0.4);
+            transform: translateY(-2px);
+        }
+        button[type="submit"]:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .disclaimer, .info-section {
+            font-size: 0.95em;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: var(--border-radius);
+        }
+        .disclaimer {
+            color: #856404; /* زرد تیره برای هشدار */
+            border: 1px solid #ffeeba;
+            background-color: #fff3cd;
+            text-align: center;
+        }
+        .info-section {
+            background-color: #e9f5f9; /* آبی خیلی روشن برای بخش مدارک */
+            border: 1px solid #bde0fe;
+            color: #004085;
+        }
+        .info-section ul {
+            padding-right: 20px; /* برای نمایش بهتر بالت پوینت ها در حالت RTL */
+            list-style-type: disc; /* یا circle */
+        }
+        .info-section li {
+            margin-bottom: 8px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header-bar">
+        <div class="logo-container">
+             <div class="logo-placeholder">
+                لوگو
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>فرم پیش ثبت نام سال تحصیلی ۱۴۰۴-۱۴۰۳</h1>
+            <p class="school-name">هنرستان کاردانش حضرت امام رضا (ع)</p>
+        </header>
+
+        <form id="preRegistrationForm">
+            <div class="form-section">
+                <h2>۱. اطلاعات فردی دانش‌آموز</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="formCompletionDate">تاریخ تکمیل فرم:<span class="required-star">*</span></label>
+                        <input type="text" id="formCompletionDate" name="تاریخ_تکمیل_فرم" placeholder="مثال: ۱۴۰۳/۰۳/۱۰" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentFirstName">نام:<span class="required-star">*</span></label>
+                        <input type="text" id="studentFirstName" name="نام_دانش_آموز" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentLastName">نام خانوادگی:<span class="required-star">*</span></label>
+                        <input type="text" id="studentLastName" name="نام_خانوادگی_دانش_آموز" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentNationalId">کدملی دانش‌آموز:<span class="required-star">*</span></label>
+                        <input type="text" id="studentNationalId" name="کدملی_دانش_آموز" pattern="[0-9]{10}" title="کدملی باید ۱۰ رقمی و بدون خط تیره باشد" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentDob">تاریخ تولد:<span class="required-star">*</span></label>
+                        <input type="text" id="studentDob" name="تاریخ_تولد_دانش_آموز" placeholder="مثال: ۱۳۸۵/۰۲/۱۵" required>
+                         <small>فرمت: سال/ماه/روز</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="studentBirthCertSerial">سریال شناسنامه:</label>
+                        <input type="text" id="studentBirthCertSerial" name="سریال_شناسنامه_دانش_آموز" placeholder="مثال: الف/۱۲ ۱۲۳۴۵۶">
+                    </div>
+                    <div class="form-group">
+                        <label for="studentBirthCertPlace">محل صدور شناسنامه:</label>
+                        <input type="text" id="studentBirthCertPlace" name="محل_صدور_شناسنامه_دانش_آموز">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>۲. اطلاعات اولیاء</h2>
+                <h3>اطلاعات پدر</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="fatherName">نام پدر:<span class="required-star">*</span></label>
+                        <input type="text" id="fatherName" name="نام_پدر" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fatherNationalId">کدملی پدر:</label>
+                        <input type="text" id="fatherNationalId" name="کدملی_پدر" pattern="[0-9]{10}" title="کدملی باید ۱۰ رقمی باشد">
+                    </div>
+                    <div class="form-group">
+                        <label for="fatherOccupation">شغل پدر:</label>
+                        <input type="text" id="fatherOccupation" name="شغل_پدر">
+                    </div>
+                    <div class="form-group">
+                        <label for="fatherMobile">تلفن همراه پدر:<span class="required-star">*</span></label>
+                        <input type="tel" id="fatherMobile" name="تلفن_همراه_پدر" pattern="09[0-9]{9}" title="مثال: 09123456789" required>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top:15px;">
+                    <label for="fatherWorkAddress">آدرس محل کار پدر:</label>
+                    <textarea id="fatherWorkAddress" name="آدرس_محل_کار_پدر" rows="2"></textarea>
+                </div>
+
+                <h3 style="margin-top: 25px;">اطلاعات مادر</h3>
+                <div class="form-grid">
+                     <div class="form-group">
+                        <label for="motherFullName">نام و نام خانوادگی مادر:<span class="required-star">*</span></label>
+                        <input type="text" id="motherFullName" name="نام_و_نام_خانوادگی_مادر" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="motherNationalId">کدملی مادر:</label>
+                        <input type="text" id="motherNationalId" name="کدملی_مادر" pattern="[0-9]{10}" title="کدملی باید ۱۰ رقمی باشد">
+                    </div>
+                    <div class="form-group">
+                        <label for="motherOccupation">شغل مادر:</label>
+                        <input type="text" id="motherOccupation" name="شغل_مادر">
+                    </div>
+                    <div class="form-group">
+                        <label for="motherMobile">تلفن همراه مادر:<span class="required-star">*</span></label>
+                        <input type="tel" id="motherMobile" name="تلفن_همراه_مادر" pattern="09[0-9]{9}" title="مثال: 09123456789" required>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top:15px;">
+                    <label for="motherWorkAddress">آدرس محل کار مادر:</label>
+                    <textarea id="motherWorkAddress" name="آدرس_محل_کار_مادر" rows="2"></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>۳. اطلاعات تماس و سکونت</h2>
+                <div class="form-group">
+                    <label for="homeAddress">آدرس منزل:<span class="required-star">*</span></label>
+                    <textarea id="homeAddress" name="آدرس_منزل" rows="3" required></textarea>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="homePhone">تلفن ثابت منزل (با کد شهر):<span class="required-star">*</span></label>
+                        <input type="tel" id="homePhone" name="تلفن_ثابت_منزل" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="postalCode">کدپستی منزل (۱۰ رقمی):<span class="required-star">*</span></label>
+                        <input type="text" id="postalCode" name="کدپستی_منزل" pattern="[0-9]{10}" title="کد پستی باید ۱۰ رقمی باشد" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>۴. اطلاعات تحصیلی (پایه نهم)</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="writtenJuneAverage">معدل کتبی خرداد ماه (نوبت دوم با ضریب ۳):</label>
+                        <input type="number" step="0.01" min="0" max="20" id="writtenJuneAverage" name="معدل_کتبی_خرداد_ماه_با_ضریب_۳">
+                    </div>
+                    <div class="form-group">
+                        <label for="finalJuneAverage">معدل پایانی خرداد (نوبت دوم):</label>
+                        <input type="number" step="0.01" min="0" max="20" id="finalJuneAverage" name="معدل_پایانی_خرداد">
+                    </div>
+                    <div class="form-group">
+                        <label for="scienceScore">نمره علوم تجربی (نوبت دوم):</label>
+                        <input type="number" step="0.01" min="0" max="20" id="scienceScore" name="نمره_علوم_تجربی">
+                    </div>
+                     <div class="form-group">
+                        <label for="mathScore">نمره ریاضی (کتبی نوبت دوم با ضریب ۳):</label>
+                        <input type="number" step="0.01" min="0" max="20" id="mathScore" name="نمره_ریاضی_کتبی_نوبت_دوم_با_ضریب_۳">
+                    </div>
+                    <div class="form-group">
+                        <label for="englishScore">نمره زبان انگلیسی (کتبی نوبت دوم با ضریب ۲):</label>
+                        <input type="number" step="0.01" min="0" max="20" id="englishScore" name="نمره_زبان_انگلیسی_کتبی_نوبت_دوم_با_ضریب_۲">
+                    </div>
+                    <div class="form-group">
+                        <label for="disciplineStatus">انضباط:<span class="required-star">*</span></label>
+                        <select name="وضعیت_انضباط" id="disciplineStatus" required>
+                            <option value="">-- انتخاب کنید --</option>
+                            <option value="عالی (30 امتیاز)">عالی (30 امتیاز)</option>
+                            <option value="خیلی خوب (15 امتیاز)">خیلی خوب (15 امتیاز)</option>
+                            <option value="خوب">خوب (امتیاز طبق آیین نامه)</option>
+                            <option value="متوسط">متوسط (امتیاز طبق آیین نامه)</option>
+                        </select>
+                        <input type="hidden" name="امتیاز_انضباط" id="disciplineScore">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>۵. انتخاب رشته و امتیازات تکمیلی</h2>
+                <div class="form-group">
+                    <label for="chosenField">رشته انتخابی اولویت اول:<span class="required-star">*</span></label>
+                    <select id="chosenField" name="رشته_انتخابی" required>
+                        <option value="">-- انتخاب رشته --</option>
+                        <option value="الکتروتکنیک">الکتروتکنیک</option>
+                        <option value="ساختمان">ساختمان</option>
+                        <option value="معماری داخلی">معماری داخلی</option>
+                        <option value="صنایع شیمیایی">صنایع شیمیایی</option>
+                        <option value="چاپ">چاپ</option>
+                        <option value="شبکه و نرم افزار">شبکه و نرم افزار</option>
+                    </select>
+                    <small>بر اساس علاقه، جمع امتیازات و حداقل امتیاز مورد نیاز رشته، گزینه فوق را انتخاب می‌نمایم.</small>
+                </div>
+
+                <h3>امتیازات تکمیلی (در صورت دارا بودن شرایط با ارائه اصل مدرک در زمان مراجعه حضوری)</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>مسابقات ورزشی:</label>
+                        <select name="نوع_مسابقات_ورزشی" onchange="updateSupplementaryScore(this, 'امتیاز_مسابقات_ورزشی', {'ناحیه ای': 10, 'استانی': 15, 'کشوری': 20})">
+                            <option value="ندارد">ندارد (۰ امتیاز)</option>
+                            <option value="ناحیه ای">ناحیه ای (۱۰ امتیاز)</option>
+                            <option value="استانی">استانی (۱۵ امتیاز)</option>
+                            <option value="کشوری">کشوری (۲۰ امتیاز)</option>
+                        </select>
+                        <input type="hidden" name="امتیاز_مسابقات_ورزشی" id="امتیاز_مسابقات_ورزشی" value="0">
+                        <small>نیاز به اصل گواهی معتبر از واحد مرتبط در اداره آموزش و پرورش.</small>
+                    </div>
+                    <div class="form-group">
+                        <label>مسابقات قرآنی و معارف اسلامی:</label>
+                        <select name="نوع_مسابقات_قرآنی_و_معارف" onchange="updateSupplementaryScore(this, 'امتیاز_مسابقات_قرآنی_و_معارف', {'ناحیه ای': 3, 'استانی': 5, 'کشوری': 10})">
+                            <option value="ندارد">ندارد (۰ امتیاز)</option>
+                            <option value="ناحیه ای">ناحیه ای (۳ امتیاز)</option>
+                            <option value="استانی">استانی (۵ امتیاز)</option>
+                            <option value="کشوری">کشوری (۱۰ امتیاز)</option>
+                        </select>
+                        <input type="hidden" name="امتیاز_مسابقات_قرآنی_و_معارف" id="امتیاز_مسابقات_قرآنی_و_معارف" value="0">
+                        <small>نیاز به اصل گواهی معتبر از واحد مرتبط در اداره آموزش و پرورش.</small>
+                    </div>
+                    <div class="form-group">
+                        <label>وضعیت خانواده ایثارگری:</label>
+                        <select name="وضعیت_خانواده_ایثارگری" onchange="updateSupplementaryScore(this, 'امتیاز_خانواده_ایثارگری', {'خانواده شهید': 30, 'جانباز': 20, 'ایثارگر': 10})">
+                            <option value="ندارد">ندارد (۰ امتیاز)</option>
+                            <option value="خانواده شهید">خانواده شهید (۳۰ امتیاز)</option>
+                            <option value="جانباز">جانباز (۲۰ امتیاز)</option>
+                            <option value="ایثارگر">ایثارگر (۱۰ امتیاز)</option>
+                        </select>
+                        <input type="hidden" name="امتیاز_خانواده_ایثارگری" id="امتیاز_خانواده_ایثارگری" value="0">
+                        <small>نیاز به ارائه نامه معتبر از بنیاد شهید و امور ایثارگران.</small>
+                    </div>
+                    <div class="form-group">
+                        <label>والدین فرهنگی (شاغل در آموزش و پرورش):</label>
+                        <select name="والدین_فرهنگی_تعداد" onchange="updateSupplementaryScore(this, 'امتیاز_والدین_فرهنگی', {'یک نفر': 20, 'دو نفر': 40})">
+                            <option value="ندارد">ندارد (۰ امتیاز)</option>
+                            <option value="یک نفر">یک نفر (۲۰ امتیاز)</option>
+                            <option value="دو نفر">دو نفر (هر همکار ۲۰ امتیاز، مجموعا ۴۰)</option>
+                        </select>
+                        <input type="hidden" name="امتیاز_والدین_فرهنگی" id="امتیاز_والدین_فرهنگی" value="0">
+                        <small>نیاز به ارائه حکم کارگزینی معتبر.</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                 <h2>۶. مدارک مورد نیاز جهت ارائه در زمان مراجعه حضوری</h2>
+                 <p>اولیای گرامی، لطفاً پس از تکمیل این فرم و دریافت کد پیگیری، در زمان مراجعه حضوری (که متعاقباً اطلاع‌رسانی خواهد شد) اصل و کپی مدارک زیر را همراه داشته باشید:</p>
+                 <ul>
+                    <li>اصل و کپی تمام صفحات شناسنامه دانش‌آموز و کارت ملی وی</li>
+                    <li>اصل و کپی کارت ملی پدر و مادر</li>
+                    <li>۴ قطعه عکس ۴×۳ جدید دانش‌آموز با زمینه سفید، پشت نویسی شده</li>
+                    <li>شناسنامه سلامت تکمیل شده (فرم از مدرسه یا مراکز بهداشتی دریافت شود)</li>
+                    <li>کارت واکسیناسیون تکمیل شده</li>
+                    <li>کارنامه پایه هفتم، هشتم و نهم (ممهور به مهر مدرسه)</li>
+                    <li>گواهینامه پایان دوره اول متوسطه (سیکل) در صورت صدور</li>
+                    <li>اصل فرم هدایت تحصیلی (اولویت فنی و حرفه‌ای یا کاردانش باید "الف" باشد)</li>
+                    <li>مدارک مربوط به امتیازات تکمیلی (در صورت انتخاب هر یک از موارد فوق)</li>
+                 </ul>
+            </div>
+
+            <div class="disclaimer">
+                <strong>توجه مهم:</strong> اولیای محترم و دانش آموزان عزیز دقت داشته باشید تکمیل این فرم و دریافت کد پیگیری، به منزله ثبت نام قطعی نمیباشد و هیچ حقی برای کسی ایجاد نمیکند. پذیرش نهایی منوط به بررسی دقیق مدارک، کسب امتیاز لازم طبق ضوابط هنرستان، مصاحبه (در صورت لزوم) و ظرفیت موجود در هر رشته خواهد بود.
+            </div>
+
+            <button type="submit" id="submitButton">ارسال اطلاعات و دریافت کد پیگیری</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('preRegistrationForm');
+        const disciplineStatusSelect = document.getElementById('disciplineStatus');
+        const disciplineScoreInput = document.getElementById('disciplineScore');
+
+        disciplineStatusSelect.addEventListener('change', function() {
+            const selectedOptionText = this.options[this.selectedIndex].text;
+            let score = 0;
+            if (selectedOptionText.includes("عالی (30 امتیاز)")) {
+                score = 30;
+            } else if (selectedOptionText.includes("خیلی خوب (15 امتیاز)")) {
+                score = 15;
+            }
+            disciplineScoreInput.value = score;
+        });
+        
+        function updateSupplementaryScore(selectElement, scoreInputId, scoreMap) {
+            const selectedValue = selectElement.value; // The value attribute of the <option>
+            // We need to find the option text to extract score if not directly in value
+            let score = 0;
+            // If score map uses the value directly:
+            if (scoreMap[selectedValue] !== undefined) {
+                 score = scoreMap[selectedValue];
+            } else {
+                // Fallback or more complex logic if needed
+                // For simplicity, ensure option values are keys in scoreMap or handle texts
+                const selectedText = selectElement.options[selectElement.selectedIndex].text;
+                for (const key in scoreMap) {
+                    if (selectedText.includes(key)) { // check if the text contains the key from scoreMap
+                        score = scoreMap[key];
+                        break;
+                    }
+                }
+            }
+            document.getElementById(scoreInputId).value = score;
+        }
+
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Ensure discipline score is updated before submission
+            const selectedDisciplineOptionText = disciplineStatusSelect.options[disciplineStatusSelect.selectedIndex].text;
+            let finalDisciplineScore = 0;
+            if (selectedDisciplineOptionText.includes("عالی (30 امتیاز)")) finalDisciplineScore = 30;
+            else if (selectedDisciplineOptionText.includes("خیلی خوب (15 امتیاز)")) finalDisciplineScore = 15;
+            // Add other conditions if "خوب" or "متوسط" have specific default scores from your regulations
+            disciplineScoreInput.value = finalDisciplineScore;
+
+            const formData = new FormData(form);
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxhaXg2Gz1X9Zu6Ys_ktaars9YWsN1o3HPl6BZB146JSVD-gEjCDU5-fsuc5bFfv1ZZ/exec';
+            const submitButton = document.getElementById('submitButton');
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'در حال ارسال اطلاعات...';
+
+            fetch(scriptURL, { method: 'POST', body: formData})
+                .then(response => response.json())
+                .then(data => {
+                    if(data.result === 'success'){
+                        alert("اطلاعات شما با موفقیت ثبت شد. " + (data.message || "") + (data.trackingCode ? "\nکد پیگیری شما: " + data.trackingCode : ""));
+                        form.reset();
+                        // Reset hidden score fields after successful submission
+                        disciplineScoreInput.value = '';
+                        document.getElementById('امتیاز_مسابقات_ورزشی').value = '0';
+                        document.getElementById('امتیاز_مسابقات_قرآنی_و_معارف').value = '0';
+                        document.getElementById('امتیاز_خانواده_ایثارگری').value = '0';
+                        document.getElementById('امتیاز_والدین_فرهنگی').value = '0';
+                    } else {
+                        alert('خطا در ثبت اطلاعات: ' + (data.message || "لطفاً اطلاعات فرم را بررسی و مجدداً تلاش کنید."));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error submitting form:', error.message);
+                    alert('خطایی در ارتباط با سرور رخ داد. لطفاً از اتصال اینترنت خود اطمینان حاصل کرده و بعداً مجدداً تلاش کنید.');
+                })
+                .finally(() => {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'ارسال اطلاعات و دریافت کد پیگیری';
+                });
+        });
+    </script>
+</body>
+</html>
